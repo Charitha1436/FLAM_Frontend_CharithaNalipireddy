@@ -1,4 +1,3 @@
-
 import express from "express";
 import { createServer } from "http";
 import { WebSocketServer } from "ws";
@@ -12,6 +11,7 @@ const app = express();
 const server = createServer(app);
 const wss = new WebSocketServer({ server });
 
+
 app.use(express.static(path.join(__dirname, "../client")));
 
 function broadcast(obj, exceptSocket = null) {
@@ -24,36 +24,35 @@ function broadcast(obj, exceptSocket = null) {
 }
 
 wss.on("connection", (ws) => {
-  console.log("New connection");
+  console.log(" New WebSocket connection");
 
-  
+ 
   broadcast({ type: "userCount", count: wss.clients.size });
 
   ws.on("message", (msg) => {
     let data;
     try {
       data = JSON.parse(msg);
-    } catch (e) {
+    } catch {
       return;
     }
 
-   
     if (["draw", "clear", "undo", "redo"].includes(data.type)) {
       broadcast(data, ws);
     }
   });
 
   ws.on("close", () => {
-    console.log("Connection closed");
+    console.log(" Connection closed");
     broadcast({ type: "userCount", count: wss.clients.size });
   });
 
-  ws.on("error", (err) => {
-    console.error("WS error", err);
-  });
+  ws.on("error", (err) => console.error(" WS error:", err));
 });
 
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
