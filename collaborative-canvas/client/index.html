@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Collaborative Drawing Canvas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="title-bar">
+    <h1>Collaborative Drawing Canvas</h1>
+    <p>Draw together !!</p>
+    <p id="userCount">Active users: 0</p>
+  </header>
+
+  <div class="toolbar">
+    <input type="color" id="colorPicker" value="#1e88e5" />
+    <input type="range" id="brushSize" min="1" max="40" value="6" />
+    <button id="eraser">Eraser</button>
+    <button id="clear">Clear</button>
+  </div>
+
+  <canvas id="board"></canvas>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

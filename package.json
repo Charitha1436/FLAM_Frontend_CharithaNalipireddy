@@ -1,0 +1,17 @@
+{
+  "name": "flam_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "collaborative-canvas/server/server.js",
+  "scripts": {
+    "start": "node collaborative-canvas/server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.2",
+    "ws": "^8.18.3"
+  }
+}
