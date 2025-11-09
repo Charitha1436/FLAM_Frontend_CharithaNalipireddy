@@ -1,6 +1,9 @@
 
 export function createSocketAPI() {
-  const socket = new WebSocket(`ws://${window.location.host}`);
+ const socket = new WebSocket(
+  window.location.origin.replace(/^http/, "ws")
+);
+
 
   const handlers = {
     onDraw: null,
